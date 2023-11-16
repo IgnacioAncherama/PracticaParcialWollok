@@ -1,0 +1,96 @@
+import Practica.*
+
+describe "Personas y Planeta"{
+	const julieta = new Personas(edad = 42)
+	const ana = new Atletas(edad = 25)
+	const rosa = new Atletas(edad = 45 , tecnicasConocidas = 8)
+	const perla = new Atletas( edad = 28, tecnicasConocidas = 4, masaMuscular = 6)
+	const monica = new Docentes( edad = 45 , cantCursos = 6)
+	const luisa = new Docentes( edad = 35, cantCursos = 1)
+	const triton = new Planeta(longitudTotal=0,  habitantes = #{ana, rosa, monica,julieta,luisa, perla }, cantMuseos = 1)
+	
+	test "potencia julieta 20"{
+		assert.equals(julieta.potencia(), 20)
+	}
+	test "potencia ana 28"{
+		assert.equals(ana.potencia(), 28)
+	}
+	test "potencia rosa 52"{
+		assert.equals(rosa.potencia(), 52)
+	}
+	test "potencia perla 44"{
+		assert.equals(perla.potencia(), 44)
+	}
+	test "potencia monica 20"{
+		assert.equals(monica.potencia(), 20)
+	}
+	test "potencia luisa 20"{
+		assert.equals(luisa.potencia(), 20)
+	}
+	test "inteligencia julieta 8"{
+		assert.equals(julieta.inteligencia(), 8)
+	}
+	test "inteligencia ana 12"{
+		assert.equals(ana.inteligencia(), 12)
+	}
+	test "inteligencia rosa 8"{
+		assert.equals(rosa.inteligencia(), 8)
+	}
+	test "inteligencia perla 12"{
+		assert.equals(perla.inteligencia(), 12)
+	}
+	test "inteligencia monica 20"{
+		assert.equals(monica.inteligencia(), 20)
+	}
+	test "inteligencia luisa 14"{
+		assert.equals(luisa.inteligencia(), 14)
+	}
+	test "no es destacada julieta"{
+		assert.notThat(julieta.esDestacado())
+	}
+	test "es destacada ana"{
+		assert.that(ana.esDestacado())
+	}
+	test "es destacada rosa"{
+		assert.that(rosa.esDestacado())
+	}
+	test "no es destacada perla"{
+		assert.notThat(perla.esDestacado())
+	}
+	test "es destacada monica"{
+		assert.that(monica.esDestacado())
+	}
+	test "no es destacada luisa"{
+		assert.notThat(luisa.esDestacado())
+	}
+	test "delegacion diplomatica ana, rosa, monica"{ //
+		assert.that(triton.delegacionDiplomatica() == #{ana, rosa, monica} )
+	}
+	test "valor de defensa"{
+		assert.equals(triton.defensa(), 2)
+	}
+	test "no es culto triton"{
+		assert.notThat(triton.esCulto())
+	}
+	test "potencia real de triton 184"{ //
+		assert.equals(triton.potenciaReal(), 184)
+	} 
+}
+describe "perla nueva"{
+		const perla = new Atletas( edad = 28, tecnicasConocidas = 4, masaMuscular = 6)
+		test "perla no es destacada nuevo"{
+		perla.aprenderTecnica()
+		perla.entrenar(15)
+		assert.notThat(perla.esDestacado())
+	}
+	test "perla tiene potencia 65 nuevo"{
+		perla.aprenderTecnica()
+		perla.entrenar(15)
+		assert.equals(perla.potencia(), 65)
+	}
+	test "perla es destacada dos veces"{
+		perla.aprenderTecnica()
+		perla.aprenderTecnica()
+		assert.that(perla.esDestacado())
+	}
+}
